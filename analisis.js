@@ -1,15 +1,4 @@
-const salariosCiclistas = ciclistas.map(
-    function (ciclista) {
-        return ciclista.salary
-    }
-);
-
-const salariosCiclistasSorted = salariosCiclistas.sort(
-    function (salaryA, salaryB) {
-        return salaryA - salaryB;
-    }
-);
-
+// Helpers
 function esPar(numero) {
     return (numero % 2 === 0);
 }
@@ -22,8 +11,9 @@ function calcularMediaAritmetica(lista) {
     );
     const promedioLista = sumaLista / lista.length;
     return promedioLista;
-  }
+}
 
+// Calculadora de mediana
 function medianaSalarios(lista) {
     const mitad = parseInt(lista.length / 2);
 
@@ -40,6 +30,30 @@ function medianaSalarios(lista) {
     }
 }
 
+// Mediana general
+const salariosCiclistas = ciclistas.map(
+    function (ciclista) {
+        return ciclista.salary
+    }
+);
+
+const salariosCiclistasSorted = salariosCiclistas.sort(
+    function (salaryA, salaryB) {
+        return salaryA - salaryB;
+    }
+);
+
+const medianaGeneralCiclistas = medianaSalarios(salariosCiclistasSorted);
+
+// Mediana del top 10%
+const spliceStart = (salariosCiclistasSorted.length * 90) / 100;
+const spliceCount = salariosCiclistasSorted.length - spliceStart;
+
+const salariosTop10 = salariosCiclistasSorted.splice(spliceStart, spliceCount);
+
+const medianaTop10 = medianaSalarios(salariosTop10);
+
 console.log(
-    medianaSalarios(salariosCiclistasSorted)
+    medianaGeneralCiclistas,
+    medianaTop10,
 );
